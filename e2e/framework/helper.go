@@ -409,8 +409,11 @@ func (p *ReservedPort) Close() error {
 		return nil
 	}
 
-	err := p.listener.Close()
 	p.isClosed = true
+
+	err := p.listener.Close()
+
+	fmt.Printf("ReservedPort:Closed %d\n", p.port)
 
 	return err
 }
