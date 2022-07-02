@@ -16,6 +16,8 @@ import (
 )
 
 func TestBroadcast(t *testing.T) {
+	t.Skip()
+
 	testCases := []struct {
 		name     string
 		numNodes int
