@@ -60,10 +60,6 @@ func TestBroadcast(t *testing.T) {
 			}
 			fmt.Println("")
 
-			t.Fail()
-
-			return
-
 			framework.MultiJoinSerial(t, srvs[0:tt.numConnectedNodes])
 
 			// Check the connections
