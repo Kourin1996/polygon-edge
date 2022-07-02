@@ -416,6 +416,9 @@ func (p *ReservedPort) Close() error {
 }
 
 func FindAvailablePort(from, to int) *ReservedPort {
+	hoge.Lock()
+	defer hoge.Unlock()
+
 	for port := from; port < to; port++ {
 		addr := fmt.Sprintf("localhost:%d", port)
 		if l, err := net.Listen("tcp", addr); err == nil {

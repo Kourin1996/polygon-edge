@@ -46,6 +46,10 @@ import (
 
 type TestServerConfigCallback func(*TestServerConfig)
 
+var (
+	hoge sync.Mutex
+)
+
 const (
 	serverIP    = "127.0.0.1"
 	initialPort = 12000
