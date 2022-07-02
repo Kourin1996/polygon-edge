@@ -473,7 +473,10 @@ func NewTestServers(t *testing.T, num int, conf func(*TestServerConfig)) []*Test
 			t.Fatal(err)
 		}
 
-		srv := NewTestServer(t, dataDir, conf)
+		srv := NewTestServer(t, dataDir, func(tsc *TestServerConfig) {
+			conf(tsc)
+			tsc.SetShowsLog(i == 0)
+		})
 		srv.Config.SetBootnodes(bootnodes)
 
 		srvs = append(srvs, srv)
