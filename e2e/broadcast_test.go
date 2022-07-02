@@ -16,6 +16,8 @@ import (
 )
 
 func TestBroadcast(t *testing.T) {
+	t.Parallel()
+
 	testCases := []struct {
 		name     string
 		numNodes int
@@ -48,6 +50,8 @@ func TestBroadcast(t *testing.T) {
 		tt := tt
 
 		t.Run(tt.name, func(t *testing.T) {
+			t.Parallel()
+
 			srvs := framework.NewTestServers(t, tt.numNodes, conf)
 
 			fmt.Printf("\nStart Test Servers\n")
