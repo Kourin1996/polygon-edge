@@ -42,7 +42,6 @@ func TestBroadcast(t *testing.T) {
 		config.SetConsensus(framework.ConsensusDummy)
 		config.Premine(senderAddr, framework.EthToWei(10))
 		config.SetSeal(true)
-		config.SetShowsLog(true)
 	}
 
 	for _, tt := range testCases {
