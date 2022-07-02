@@ -21,6 +21,7 @@ import (
 	and verifies it was mined
 **/
 func TestIbft_Transfer(t *testing.T) {
+	t.SkipNow()
 	t.Parallel()
 
 	testCases := []struct {
@@ -96,6 +97,7 @@ func TestIbft_Transfer(t *testing.T) {
 }
 
 func TestIbft_TransactionFeeRecipient(t *testing.T) {
+	t.SkipNow()
 	t.Parallel()
 
 	testCases := []struct {
