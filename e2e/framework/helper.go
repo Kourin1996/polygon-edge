@@ -413,15 +413,13 @@ func (p *ReservedPort) Close() error {
 
 	err := p.listener.Close()
 
-	fmt.Printf("ReservedPort:Closed %d\n", p.port)
+	t := time.Now()
+	fmt.Printf("ReservedPort:Closed %d <== %s\n", p.port, t.Format(time.UnixDate))
 
 	return err
 }
 
 func FindAvailablePort(from, to int) *ReservedPort {
-	hoge.Lock()
-	defer hoge.Unlock()
-
 	for port := from; port < to; port++ {
 		addr := fmt.Sprintf("localhost:%d", port)
 		if l, err := net.Listen("tcp", addr); err == nil {
@@ -433,6 +431,9 @@ func FindAvailablePort(from, to int) *ReservedPort {
 }
 
 func FindAvailablePorts(n, from, to int) ([]ReservedPort, error) {
+	hoge.Lock()
+	defer hoge.Unlock()
+
 	ports := make([]ReservedPort, 0, n)
 	nextFrom := from
 
