@@ -16,8 +16,6 @@ import (
 )
 
 func TestBroadcast(t *testing.T) {
-	// t.Skip()
-
 	testCases := []struct {
 		name     string
 		numNodes int
@@ -44,6 +42,7 @@ func TestBroadcast(t *testing.T) {
 		config.SetConsensus(framework.ConsensusDummy)
 		config.Premine(senderAddr, framework.EthToWei(10))
 		config.SetSeal(true)
+		config.SetShowsLog(true)
 	}
 
 	for _, tt := range testCases {
@@ -51,6 +50,12 @@ func TestBroadcast(t *testing.T) {
 
 		t.Run(tt.name, func(t *testing.T) {
 			srvs := framework.NewTestServers(t, tt.numNodes, conf)
+
+			fmt.Printf("\nStart Test Servers")
+			for idx, srv := range srvs {
+				fmt.Printf("Server[%d] grpc=%s, libp2p=%s, jsonrpc=%s\n", idx, srv.GrpcAddr(), srv.LibP2PAddr(), srv.JSONRPCAddr())
+			}
+			fmt.Println("")
 
 			framework.MultiJoinSerial(t, srvs[0:tt.numConnectedNodes])
 
