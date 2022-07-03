@@ -64,10 +64,6 @@ type TestServer struct {
 }
 
 func NewTestServer(t *testing.T, rootDir string, callback TestServerConfigCallback) *TestServer {
-	// To lock for the ports
-	hoge.Lock()
-	defer hoge.Unlock()
-
 	t.Helper()
 
 	// Reserve ports
