@@ -425,7 +425,7 @@ func FindAvailablePort(from, to int) *ReservedPort {
 	defer cancel()
 
 	for port := from; port < to; port++ {
-		ln, err := lc.Listen(context, "tcp", fmt.Sprintf(":%d", port))
+		ln, err := lc.Listen(context, "tcp", fmt.Sprintf("localhost:%d", port))
 		if err == nil {
 			return &ReservedPort{port: port, listener: ln}
 		}
