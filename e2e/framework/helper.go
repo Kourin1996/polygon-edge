@@ -435,9 +435,6 @@ func FindAvailablePort(from, to int) *ReservedPort {
 }
 
 func FindAvailablePorts(n, from, to int) ([]ReservedPort, error) {
-	hoge.Lock()
-	defer hoge.Unlock()
-
 	ports := make([]ReservedPort, 0, n)
 	nextFrom := from
 
