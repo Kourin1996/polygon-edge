@@ -420,12 +420,12 @@ func (p *ReservedPort) Close() error {
 }
 
 func FindAvailablePort(from, to int) *ReservedPort {
-	lc := net.ListenConfig{}
-	context, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
+	// lc := net.ListenConfig{}
+	// context, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	// defer cancel()
 
 	for port := from; port < to; port++ {
-		ln, err := lc.Listen(context, "tcp", fmt.Sprintf("localhost:%d", port))
+		ln, err := net.Listen("tcp", fmt.Sprintf("localhost:%d", port))
 		if err == nil {
 			return &ReservedPort{port: port, listener: ln}
 		}
